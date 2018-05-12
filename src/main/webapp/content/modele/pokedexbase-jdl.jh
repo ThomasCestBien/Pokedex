@@ -1,0 +1,32 @@
+entity Pokedex{
+  	pokedexname String,
+}
+entity Pokemon {
+    pokename String,
+	numero Integer,
+  	type TypePo,
+    type2 TypePo,
+    low_evo Integer,
+  	upp_evo Integer,
+    img String
+}
+enum TypePo {
+    ACIER, COMBAT, DRAGON, EAU, ELECTRIK,
+    FEE, FEU, GLACE, PSY, INSECTE, NORMAL, SOL,
+    ROCHE, PLANTE, VOL, POISON, SPECTRE, TENEBRE, VOL
+}
+entity Objet {
+  	objname String,
+  	type TypeObj,
+    img String
+}
+enum TypeObj{
+	POTION, BALL, PIERRE, BAIE, CT_CS
+}
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+Pokedex to Pokemon{pokedex},
+Pokedex to Objet{pokedex(pokedexname)}
+}
+
+paginate Pokemon, Objet with infinite-scroll
