@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Renderer, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, Renderer, ElementRef, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { JhiEventManager } from 'ng-jhipster';
@@ -10,7 +10,7 @@ import { StateStorageService } from '../auth/state-storage.service';
     selector: 'jhi-login-modal',
     templateUrl: './login.component.html'
 })
-export class JhiLoginModalComponent implements AfterViewInit {
+export class JhiLoginModalComponent implements AfterViewInit, OnInit {
     authenticationError: boolean;
     password: string;
     rememberMe: boolean;
@@ -24,10 +24,11 @@ export class JhiLoginModalComponent implements AfterViewInit {
         private elementRef: ElementRef,
         private renderer: Renderer,
         private router: Router,
-        public activeModal: NgbActiveModal
+        //public activeModal: NgbActiveModal
     ) {
         this.credentials = {};
     }
+    ngOnInit(){}
 
     ngAfterViewInit() {
         this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []);
@@ -40,7 +41,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
             rememberMe: true
         };
         this.authenticationError = false;
-        this.activeModal.dismiss('cancel');
+        // this.activeModal.dismiss('cancel');
     }
 
     login() {
@@ -50,7 +51,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
             rememberMe: this.rememberMe
         }).then(() => {
             this.authenticationError = false;
-            this.activeModal.dismiss('login success');
+            //this.activeModal.dismiss('login success');
             if (this.router.url === '/register' || (/^\/activate\//.test(this.router.url)) ||
                 (/^\/reset\//.test(this.router.url))) {
                 this.router.navigate(['']);
@@ -74,12 +75,12 @@ export class JhiLoginModalComponent implements AfterViewInit {
     }
 
     register() {
-        this.activeModal.dismiss('to state register');
+       // this.activeModal.dismiss('to state register');
         this.router.navigate(['/register']);
     }
 
     requestResetPassword() {
-        this.activeModal.dismiss('to state requestReset');
+      //  this.activeModal.dismiss('to state requestReset');
         this.router.navigate(['/reset', 'request']);
     }
 }
