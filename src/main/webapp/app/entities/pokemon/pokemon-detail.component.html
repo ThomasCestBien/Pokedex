@@ -1,0 +1,56 @@
+
+<div *ngIf="pokemon">
+    <h2><span>Pokemon</span> {{pokemon.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Pokename</span></dt>
+        <dd>
+            <span>{{pokemon.pokename}}</span>
+        </dd>
+        <dt><span>Numero</span></dt>
+        <dd>
+            <span>{{pokemon.numero}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{pokemon.type}}</span>
+        </dd>
+        <dt><span>Type 2</span></dt>
+        <dd>
+            <span>{{pokemon.type2}}</span>
+        </dd>
+        <dt><span>Lowevo</span></dt>
+        <dd>
+            <span>{{pokemon.lowevo}}</span>
+        </dd>
+        <dt><span>Uppevo</span></dt>
+        <dd>
+            <span>{{pokemon.uppevo}}</span>
+        </dd>
+        <dt><span>Img</span></dt>
+        <dd>
+            <span>{{pokemon.img}}</span>
+        </dd>
+        <dt><span>Pokedex</span></dt>
+        <dd>
+            <div *ngIf="pokemon.pokedex">
+                <a [routerLink]="['/pokedex', pokemon.pokedex?.id]">{{pokemon.pokedex?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pokemon/'+ pokemon.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

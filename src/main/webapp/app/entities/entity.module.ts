@@ -1,9 +1,15 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+import { PokebasePokedexModule } from './pokedex/pokedex.module';
+import { PokebasePokemonModule } from './pokemon/pokemon.module';
+import { PokebaseObjetModule } from './objet/objet.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
     imports: [
+        PokebasePokedexModule,
+        PokebasePokemonModule,
+        PokebaseObjetModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

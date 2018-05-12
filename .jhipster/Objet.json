@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pokedex",
+            "otherEntityName": "pokedex",
+            "otherEntityField": "pokedexname"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "objname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "TypeObj",
+            "fieldValues": "POTION,BALL,PIERRE,BAIE,CT_CS"
+        },
+        {
+            "fieldName": "img",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180512174804",
+    "entityTableName": "objet",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

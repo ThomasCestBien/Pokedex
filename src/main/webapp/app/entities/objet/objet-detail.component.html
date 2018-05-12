@@ -1,0 +1,40 @@
+
+<div *ngIf="objet">
+    <h2><span>Objet</span> {{objet.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Objname</span></dt>
+        <dd>
+            <span>{{objet.objname}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{objet.type}}</span>
+        </dd>
+        <dt><span>Img</span></dt>
+        <dd>
+            <span>{{objet.img}}</span>
+        </dd>
+        <dt><span>Pokedex</span></dt>
+        <dd>
+            <div *ngIf="objet.pokedex">
+                <a [routerLink]="['/pokedex', objet.pokedex?.id]">{{objet.pokedex?.pokedexname}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'objet/'+ objet.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

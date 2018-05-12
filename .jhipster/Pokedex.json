@@ -1,0 +1,29 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pokemon",
+            "otherEntityName": "pokemon",
+            "otherEntityRelationshipName": "pokedex"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "objet",
+            "otherEntityName": "objet",
+            "otherEntityRelationshipName": "pokedex"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "pokedexname",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180512174802",
+    "entityTableName": "pokedex",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

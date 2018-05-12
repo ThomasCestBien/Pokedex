@@ -1,0 +1,103 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPokemonLabel">Create or edit a Pokemon</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!pokemon.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pokemon.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_pokename">Pokename</label>
+            <input type="text" class="form-control" name="pokename" id="field_pokename"
+                [(ngModel)]="pokemon.pokename" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_numero">Numero</label>
+            <input type="number" class="form-control" name="numero" id="field_numero"
+                [(ngModel)]="pokemon.numero" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_type">Type</label>
+            <select class="form-control" name="type" [(ngModel)]="pokemon.type" id="field_type" >
+                <option value="ACIER">ACIER</option>
+                <option value="COMBAT">COMBAT</option>
+                <option value="DRAGON">DRAGON</option>
+                <option value="EAU">EAU</option>
+                <option value="ELECTRIK">ELECTRIK</option>
+                <option value="FEE">FEE</option>
+                <option value="FEU">FEU</option>
+                <option value="GLACE">GLACE</option>
+                <option value="PSY">PSY</option>
+                <option value="INSECTE">INSECTE</option>
+                <option value="NORMAL">NORMAL</option>
+                <option value="SOL">SOL</option>
+                <option value="ROCHE">ROCHE</option>
+                <option value="PLANTE">PLANTE</option>
+                <option value="VOL">VOL</option>
+                <option value="POISON">POISON</option>
+                <option value="SPECTRE">SPECTRE</option>
+                <option value="TENEBRE">TENEBRE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_type2">Type 2</label>
+            <select class="form-control" name="type2" [(ngModel)]="pokemon.type2" id="field_type2" >
+                <option value="ACIER">ACIER</option>
+                <option value="COMBAT">COMBAT</option>
+                <option value="DRAGON">DRAGON</option>
+                <option value="EAU">EAU</option>
+                <option value="ELECTRIK">ELECTRIK</option>
+                <option value="FEE">FEE</option>
+                <option value="FEU">FEU</option>
+                <option value="GLACE">GLACE</option>
+                <option value="PSY">PSY</option>
+                <option value="INSECTE">INSECTE</option>
+                <option value="NORMAL">NORMAL</option>
+                <option value="SOL">SOL</option>
+                <option value="ROCHE">ROCHE</option>
+                <option value="PLANTE">PLANTE</option>
+                <option value="VOL">VOL</option>
+                <option value="POISON">POISON</option>
+                <option value="SPECTRE">SPECTRE</option>
+                <option value="TENEBRE">TENEBRE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lowevo">Lowevo</label>
+            <input type="number" class="form-control" name="lowevo" id="field_lowevo"
+                [(ngModel)]="pokemon.lowevo" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_uppevo">Uppevo</label>
+            <input type="number" class="form-control" name="uppevo" id="field_uppevo"
+                [(ngModel)]="pokemon.uppevo" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_img">Img</label>
+            <input type="text" class="form-control" name="img" id="field_img"
+                [(ngModel)]="pokemon.img" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_pokedex">Pokedex</label>
+            <select class="form-control" id="field_pokedex" name="pokedex" [(ngModel)]="pokemon.pokedex" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="pokedexOption.id === pokemon.pokedex?.id ? pokemon.pokedex : pokedexOption" *ngFor="let pokedexOption of pokedexes; trackBy: trackPokedexById">{{pokedexOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

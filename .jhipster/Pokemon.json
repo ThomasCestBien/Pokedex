@@ -1,0 +1,49 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pokedex",
+            "otherEntityName": "pokedex",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "pokename",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "TypePo",
+            "fieldValues": "ACIER,COMBAT,DRAGON,EAU,ELECTRIK,FEE,FEU,GLACE,PSY,INSECTE,NORMAL,SOL,ROCHE,PLANTE,VOL,POISON,SPECTRE,TENEBRE"
+        },
+        {
+            "fieldName": "type2",
+            "fieldType": "TypePo",
+            "fieldValues": "ACIER,COMBAT,DRAGON,EAU,ELECTRIK,FEE,FEU,GLACE,PSY,INSECTE,NORMAL,SOL,ROCHE,PLANTE,VOL,POISON,SPECTRE,TENEBRE"
+        },
+        {
+            "fieldName": "lowevo",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "uppevo",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "img",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180512174803",
+    "entityTableName": "pokemon",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

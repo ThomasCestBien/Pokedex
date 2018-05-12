@@ -1,0 +1,52 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myObjetLabel">Create or edit a Objet</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!objet.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="objet.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_objname">Objname</label>
+            <input type="text" class="form-control" name="objname" id="field_objname"
+                [(ngModel)]="objet.objname" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_type">Type</label>
+            <select class="form-control" name="type" [(ngModel)]="objet.type" id="field_type" >
+                <option value="POTION">POTION</option>
+                <option value="BALL">BALL</option>
+                <option value="PIERRE">PIERRE</option>
+                <option value="BAIE">BAIE</option>
+                <option value="CT_CS">CT_CS</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_img">Img</label>
+            <input type="text" class="form-control" name="img" id="field_img"
+                [(ngModel)]="objet.img" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_pokedex">Pokedex</label>
+            <select class="form-control" id="field_pokedex" name="pokedex" [(ngModel)]="objet.pokedex" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="pokedexOption.id === objet.pokedex?.id ? objet.pokedex : pokedexOption" *ngFor="let pokedexOption of pokedexes; trackBy: trackPokedexById">{{pokedexOption.pokedexname}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

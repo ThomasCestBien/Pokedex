@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span>Pokemons</span>
+        <button class="btn btn-primary float-right jh-create-entity create-pokemon" [routerLink]="['/', { outlets: { popup: ['pokemon-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Pokemon
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="pokemons">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pokename"><span>Pokename</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="numero"><span>Numero</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="type"><span>Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="type2"><span>Type 2</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lowevo"><span>Lowevo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="uppevo"><span>Uppevo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="img"><span>Img</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pokedex.id"><span>Pokedex</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let pokemon of pokemons ;trackBy: trackId">
+                <td><a [routerLink]="['../pokemon', pokemon.id ]">{{pokemon.id}}</a></td>
+                <td>{{pokemon.pokename}}</td>
+                <td>{{pokemon.numero}}</td>
+                <td>https://www.pokebip.com/pokedex-images/types/{{pokemon.type}}.png</td>
+                <td>https://www.pokebip.com/pokedex-images/types/{{pokemon.type2}}.png</td>
+                <td>https://www.pokebip.com/pokedex-images/artworks/{{pokemon.lowevo}}.png</td>
+                <td>https://www.pokebip.com/pokedex-images/artworks/{{pokemon.uppevo}}.png</td>
+                <td>https://www.pokebip.com/pokedex-images/artworks/{{pokemon.numero}}.png</td>
+                <td>
+                    <div *ngIf="pokemon.pokedex">
+                        <a [routerLink]="['../pokedex', pokemon.pokedex?.id ]" >{{pokemon.pokedex?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../pokemon', pokemon.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pokemon/'+ pokemon.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pokemon/'+ pokemon.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
